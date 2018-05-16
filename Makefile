@@ -19,13 +19,14 @@ $(EXEC): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o vbrand
 
 clean:
-	rm -f *.o $(EXEC) video.test
+	rm -f *.o $(EXEC) test_files/video.test
 
-video.test.original:
-	wget $(TEST_VIDEO_FILE_SOURCE) -O video.test.original
+test_files/video.test.original:
+	mkdir -p test_files
+	wget $(TEST_VIDEO_FILE_SOURCE) -O test_files/video.test.original
 
-video.test: video.test.original
-	@cp video.test.original video.test
+test_files/video.test: test_files/video.test.original
+	@cp test_files/video.test.original test_files/video.test
 
 test: test_speed test_correctness
 	@tput setaf 2
@@ -34,23 +35,23 @@ test: test_speed test_correctness
 	@tput sgr0
 
 test_speed: $(EXEC)
-	rm -f video.test && make video.test
-	if ! timeout 1 ./$(EXEC) video.test; then \
+	rm -f test_files/video.test && make test_files/video.test
+	if ! timeout 1 ./$(EXEC) test_files/video.test; then \
 		echo Took too long to actually brand; \
 		exit 1; \
 	fi
-	if ! timeout 1 ./$(EXEC) video.test; then \
+	if ! timeout 1 ./$(EXEC) test_files/video.test; then \
 		echo Took too long to run vbrand on an already branded file; \
 		exit 1; \
 	fi
 
 test_correctness: $(EXEC)
-	rm -f video.test && make video.test
-	if [[ "`$(EXEC) video.test`" != "Added brand to video.test" ]] ; then \
+	rm -f test_files/video.test && make test_files/video.test
+	if [[ "`$(EXEC) test_files/video.test`" != "Added brand to test_files/video.test" ]] ; then \
 		echo vbrand did not brand an unbranded file; \
 		exit 1; \
 	fi
-	if [[ "`$(EXEC) video.test`" != "Already branded video.test" ]] ; then \
+	if [[ "`$(EXEC) test_files/video.test`" != "Already branded test_files/video.test" ]] ; then \
 		echo vbrand rebranded a branded file; \
 		exit 1; \
 	fi
