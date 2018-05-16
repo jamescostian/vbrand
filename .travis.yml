@@ -1,0 +1,6 @@
+language: cpp
+install: make video.test.original
+script: make test
+compiler:
+  - clang
+  - gcc
