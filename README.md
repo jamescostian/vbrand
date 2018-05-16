@@ -14,11 +14,19 @@ cat video.mp4 brand.txt > branded_video.mp4 && mv branded_video.mp4 video.mp4
 
 An efficient solution would have to seek to the correct location and apply the brand there. In addition, you don't want to rebrand files - otherwise, you may end up with larger and larger video files, and any backup service you use will re-upload the entire video files!
 
-So vbrand takes care of all the above issues - it adds a brand quickly, without disrupting playback, and without needlessly adding the same brand again.
+`vbrand` takes care of all the above issues - it adds a brand quickly, without disrupting playback, and if you run it on the same file several times, it will only add the brand the first time.
 
 ## Installation
 
-Assuming you have g++ and make, run `make` and then move `vbrand` into a directory in your `$PATH`
+After installing g++, make, and git, run:
+
+```bash
+git clone git@github.com:jamescostian/vbrand.git
+cd vbrand
+make brand="Insert your own brand here"
+```
+
+In the end you'll have an executable called `vbrand` - move it into a directory in your `$PATH`
 
 ## Usage
 
