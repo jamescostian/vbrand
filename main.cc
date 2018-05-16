@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <iostream>
 #include "eof_tools.h"
-#include "the_brand.h"
 
 int main(int argc, char **argv) {
   assert(argc == 2);
