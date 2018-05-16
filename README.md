@@ -1,6 +1,8 @@
 # vbrand
 
-Allows you to add a brand to the end of all of your videos that won't affect playback, but will change their hash (useful for privacy concerns over "the cloud")
+Allows you to add a brand to the end of a video that won't affect its playback, but will change its hash.
+
+Only really useful for privacy concerns over [convergent encryption](https://en.wikipedia.org/wiki/Convergent_encryption) in "the cloud".
 
 ## Installation
 
