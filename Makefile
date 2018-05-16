@@ -24,7 +24,7 @@ clean:
 video.test.original:
 	wget $(TEST_VIDEO_FILE_SOURCE) -O video.test.original
 
-get_test_video: video.test.original
+video.test: video.test.original
 	@cp video.test.original video.test
 
 test: test_speed test_correctness
@@ -34,7 +34,7 @@ test: test_speed test_correctness
 	@tput sgr0
 
 test_speed: $(EXEC)
-	make get_test_video
+	rm video.test && make video.test
 	if ! timeout 1 ./$(EXEC) video.test; then \
 		echo Took too long to actually brand; \
 		exit 1; \
@@ -45,7 +45,7 @@ test_speed: $(EXEC)
 	fi
 
 test_correctness: $(EXEC)
-	make get_test_video
+	rm video.test && make video.test
 	if [[ "`$(EXEC) video.test`" != "Added brand to video.test" ]] ; then \
 		echo vbrand did not brand an unbranded file; \
 		exit 1; \
