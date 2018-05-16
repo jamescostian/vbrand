@@ -1,5 +1,5 @@
 language: cpp
-install: make video.test.original
+install: make test_files/video.test.original
 script: make test
 compiler:
   - clang
