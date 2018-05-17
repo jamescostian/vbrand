@@ -36,12 +36,20 @@ test: test_speed test_correctness
 
 test_speed: $(EXEC)
 	rm -f test_files/video.test && make test_files/video.test
+	if ! timeout 1 ./$(EXEC) rm test_files/video.test; then \
+		echo Took too long to realize the file was never even branded; \
+		exit 1; \
+	fi
 	if ! timeout 1 ./$(EXEC) test_files/video.test; then \
 		echo Took too long to actually brand; \
 		exit 1; \
 	fi
 	if ! timeout 1 ./$(EXEC) test_files/video.test; then \
 		echo Took too long to run vbrand on an already branded file; \
+		exit 1; \
+	fi
+	if ! timeout 1 ./$(EXEC) rm test_files/video.test; then \
+		echo Took too long to remove a brand; \
 		exit 1; \
 	fi
 
@@ -53,5 +61,10 @@ test_correctness: $(EXEC)
 	fi
 	if [[ "`$(EXEC) test_files/video.test`" != "Already branded test_files/video.test" ]] ; then \
 		echo vbrand rebranded a branded file; \
+		exit 1; \
+	fi
+	$(EXEC) rm test_files/video.test
+	if ! diff test_files/video.test test_files/video.test.original; then \
+		echo Branding and unbranding does not return the original file; \
 		exit 1; \
 	fi
