@@ -1,0 +1,39 @@
+#!/bin/bash
+set -e
+rm -f tests/video.test && make tests/video.test
+
+err() {
+  tput setaf 1
+  echo "$1"
+  exit 1
+}
+
+if ! timeout 1 ./vbrand rm tests/video.test; then
+  err "Took too long to realize the file was never even branded"
+fi
+if ! timeout 1 ./vbrand tests/video.test; then
+  err "Took too long to actually brand"
+fi
+if ! timeout 1 ./vbrand tests/video.test; then
+  err "Took too long to run vbrand on an already branded file"
+fi
+if ! timeout 1 ./vbrand rm tests/video.test; then
+  err "Took too long to remove a brand"
+fi
+
+rm -f tests/video.test && make tests/video.test
+if [[ "`vbrand tests/video.test`" != "Added brand to tests/video.test" ]] ; then
+  err "vbrand did not brand an unbranded file"
+fi
+if [[ "`vbrand tests/video.test`" != "Already branded tests/video.test" ]] ; then
+  err "vbrand rebranded a branded file"
+fi
+./vbrand rm tests/video.test
+if ! diff tests/video.test tests/video.test.original; then
+  err "Branding and unbranding does not return the original file"
+fi
+
+tput setaf 2
+echo
+echo Passed all tests!
+tput sgr0
