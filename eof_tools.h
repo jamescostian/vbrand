@@ -1,4 +1,5 @@
 #include <string>
+#include <cstring>
 #include <fstream>
 #include <cstdint>
 #include <sys/stat.h>
