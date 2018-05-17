@@ -14,11 +14,11 @@ cat video.mp4 brand.txt > branded_video.mp4 && mv branded_video.mp4 video.mp4
 
 An *efficient* solution would have to seek to the end of the file and apply the brand there. In addition, you don't want to rebrand files - otherwise, you may end up with larger and larger video files over time, and any backup service you use will re-upload the entire video files every time you rebrand them!
 
-`vbrand` takes care of all the above issues - it adds a brand **quickly**, **without disrupting playback**, and it will **never brand a video more than once**.
+`vbrand` takes care of all the above issues - it adds a brand in **milliseconds** even on large (62GiB) files on traditional hard disks, **without disrupting playback**, and it will **never brand a video more than once**.
 
 ## Installation
 
-After installing g++, make, and git, run:
+Assuming you have Linux or macOS and you've installed g++, make, and git, run:
 
 ```bash
 git clone --depth 1 https://github.com/jamescostian/vbrand.git
@@ -43,9 +43,11 @@ find . -type f -a \( -name "*.m4v" -o -name "*.flv" -o -name "*.wmv" -o -name "*
 
 `vbrand rm video.mp4` will remove the brand. If you'd like to change your brand, you should first remove the old brand from everything that was branded, then recompile with your new brand, and finally rebrand all of your previously branded files.
 
+Note that while adding a brand is absurdly quick (~3ms for a 62GiB file), removing is not (~300ms on the same 62GiB file)
+
 ## Testing
 
-`make test` will run all of the tests - they're all written up in [tests/run](tests/run), and they all work by taking the 1.4GB video - [here's the source](http://jell.yfish.us/).
+`make test` will run all of the tests - they're all written up in [tests/run](tests/run), and they all work on a [1.4GB video file](http://jell.yfish.us/) to ensure that `vbrand` is performant (although it is also tested for correctness).
 
 ## License
 
