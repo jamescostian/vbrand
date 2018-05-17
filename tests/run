@@ -1,12 +1,21 @@
 #!/bin/bash
 set -e
-rm -f tests/video.test && make tests/video.test
+cd "$(dirname "$0")"
+cd ..
+rm -f tests/video.test
+make tests/video.test
 
 err() {
   tput setaf 1
+  echo
   echo "$1"
+  tput sgr0
+
+  rm tests/video.test
+
   exit 1
 }
+
 
 if ! timeout 1 ./vbrand rm tests/video.test; then
   err "Took too long to realize the file was never even branded"
@@ -16,7 +25,8 @@ elif ! timeout 1 ./vbrand tests/video.test; then
   err "Took too long to run vbrand on an already branded file"
 fi
 
-rm -f tests/video.test && make tests/video.test
+rm -f tests/video.test
+make tests/video.test
 if [[ "`./vbrand tests/video.test`" != "Added brand to tests/video.test" ]] ; then
   err "vbrand did not brand an unbranded file"
 elif [[ "`./vbrand tests/video.test`" != "Already branded tests/video.test" ]] ; then
@@ -27,7 +37,10 @@ if ! diff tests/video.test tests/video.test.original; then
   err "Branding and unbranding does not return the original file"
 fi
 
+
 tput setaf 2
 echo
 echo Passed all tests!
 tput sgr0
+
+rm -f tests/video.test
