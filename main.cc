@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
       cout << "Added brand to " << filename << endl;
     }
     else {
-      cout << filename << " wasn't even branded";
+      cout << filename << " wasn't even branded" << endl;
     }
   }
   else {
@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
     else {
       string brand = THE_BRAND;
       remove_bytes_from_file(filename, brand.length());
-      cout << "Removed branding from " << filename;
+      cout << "Removed branding from " << filename << endl;
     }
   }
   return 0;
