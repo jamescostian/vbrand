@@ -39,3 +39,7 @@ If you `cd` into a directory with a lot of video files and you want to brand the
 ```bash
 find . -type f -a \( -name "*.m4v" -o -name "*.flv" -o -name "*.wmv" -o -name "*.avi" -o -name "*.mov" -o -name "*.webm" -o -name "*.ogv" -o -name "*.mkv" -o -name "*.mp4" \) -exec vbrand {} \;
 ```
+
+## Removing Branding
+
+`vbrand rm video.mp4` will remove the brand. If you'd like to change your brand, you should first remove the old brand from everything that was branded, then recompile with your new brand, and finally rebrand all of your previously branded files.
