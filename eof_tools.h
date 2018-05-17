@@ -1,5 +1,6 @@
 #include <string>
 #include <fstream>
+#include <cstdint>
 #include <sys/stat.h>
 using namespace std;
 

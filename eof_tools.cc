@@ -1,7 +1,6 @@
 #include <sstream>
 #include <cassert>
 #include <cstdlib>
-#include <cstdint>
 #include "eof_tools.h"
 
 bool file_ends_in(string filename, string ending) {
