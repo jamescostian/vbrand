@@ -6,4 +6,4 @@ compiler:
   - gcc
 cache:
   directories:
-    - test_files
+    - tests
