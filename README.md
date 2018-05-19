@@ -18,7 +18,7 @@ An *efficient* solution would have to seek to the end of the file and apply the 
 
 ## Installation
 
-## Prerequisites
+### Prerequisites
 
 Linux or macOS: git, cmake, make, g++
 
@@ -32,6 +32,8 @@ cd vbrand
 cmake -Dbrand:STRING="Insert your own brand here" .
 ```
 
+Note that in the last command, you are supposed to provide your own string. That string will be the brand that `vbrand` applies to files.
+
 ### Finalizing Build
 
 Linux and macOS users should use `make` while Windows users should use `msbuild.exe vbrand.sln`
@@ -40,7 +42,7 @@ You'll end up with an executable called `vbrand` (or `Debug/vbrand.exe` on Windo
 
 ### Troubleshooting VS Builds
 
-If you get an error about not having the right MSBuild version (e.g. it wanted me to have v141 but I had v140), then explicitly pass your MSBuild version to `cmake` like this: `cmake -T v140 -Dbrand:STRING="your brand here" .` which may require you to delete some CMake cache files
+If you get an error about not having the right MSBuild version (e.g. it wanted me to have v141 but I had v140), then explicitly pass your MSBuild version to cmake like this: `cmake -T v140 -Dbrand:STRING="your brand here" .` which may require you to delete some CMake cache files
 
 ## Usage
 
@@ -62,7 +64,9 @@ Note that while adding a brand is absurdly quick (~3ms for a 62GiB file), removi
 
 ## Testing
 
-`make test` will run all of the tests - they're all written up in [tests/run](tests/run), and they all work on a [1.4GB video file](http://jell.yfish.us/) to ensure that `vbrand` is performant (although it is also tested for correctness).
+They're all written up in [tests/run](tests/run), and they all work on a [1.4GB video file](http://jell.yfish.us/) to ensure that `vbrand` is performant (although it is also tested for correctness).
+
+Note that the tests are written in bash - there are no automated tests for Windows at this time.
 
 ## License
 
