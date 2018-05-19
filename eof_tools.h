@@ -2,7 +2,6 @@
 #include <cstring>
 #include <fstream>
 #include <cstdint>
-#include <sys/stat.h>
 using namespace std;
 
 bool file_ends_in(string filename, string ending);
