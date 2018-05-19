@@ -12,3 +12,4 @@ ZERO_CHECK*
 ALL_BUILD*
 Debug
 Release
+Makefile
