@@ -18,14 +18,29 @@ An *efficient* solution would have to seek to the end of the file and apply the 
 
 ## Installation
 
-Assuming you have Linux or macOS and you've installed g++, make, and git, run:
+## Prerequisites
+
+Linux or macOS: git, cmake, make, g++
+
+Windows: git, cmake, VS for C++ desktop development
+
+### Downloading and CMaking
 
 ```bash
 git clone --depth 1 https://github.com/jamescostian/vbrand.git
-cd vbrand && make brand="Insert your own brand here"
+cd vbrand
+cmake -Dbrand:STRING="Insert your own brand here" .
 ```
 
-In the end you'll have an executable called `vbrand` - move it into a directory in your `$PATH`
+### Finalizing Build
+
+Linux and macOS users should use `make` while Windows users should use `msbuild.exe vbrand.sln`
+
+You'll end up with an executable called `vbrand` (or `Debug/vbrand.exe` on Windows) - you can move it into your `$PATH` if you want to access it more easily.
+
+### Troubleshooting VS Builds
+
+If you get an error about not having the right MSBuild version (e.g. it wanted me to have v141 but I had v140), then explicitly pass your MSBuild version to `cmake` like this: `cmake -T v140 -Dbrand:STRING="your brand here" .` which may require you to delete some CMake cache files
 
 ## Usage
 

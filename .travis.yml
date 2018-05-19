@@ -1,6 +1,5 @@
 language: cpp
-install: make tests/video.test.original
-script: make test
+script: cmake . && make && tests/run
 compiler:
   - clang
   - gcc

@@ -1,3 +1,14 @@
-*.o
-vbrand
+vbrand*
 tests/video.test*
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+ZERO_CHECK*
+ALL_BUILD*
+Debug
+Release

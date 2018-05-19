@@ -3,7 +3,12 @@ set -e
 cd "$(dirname "$0")"
 cd ..
 rm -f tests/video.test
-make tests/video.test
+
+if [ ! -f "tests/video.test.original" ]; then
+  wget http://jell.yfish.us/media/jellyfish-400-mbps-4k-uhd-hevc-10bit.mkv -O tests/video.test.original
+fi
+
+cp tests/video.test.original tests/video.test
 
 err() {
   tput setaf 1
@@ -26,7 +31,7 @@ elif ! timeout 1 ./vbrand tests/video.test; then
 fi
 
 rm -f tests/video.test
-make tests/video.test
+cp tests/video.test.original tests/video.test
 if [[ "`./vbrand tests/video.test`" != "Added brand to tests/video.test" ]] ; then
   err "vbrand did not brand an unbranded file"
 elif [[ "`./vbrand tests/video.test`" != "Already branded tests/video.test" ]] ; then
