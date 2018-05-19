@@ -50,17 +50,23 @@ To add a brand to a file called `video.mkv` just run `vbrand video.mkv` and it'l
 
 ### Batch Usage
 
-If you `cd` into a directory with a lot of video files and you want to brand them all, that's no problem:
+If you `cd` into a directory with a lot of video files and you want to brand them all, you can use tools built-in to your OS. Linux and macOS users can use:
 
 ```bash
-find . -type f -a \( -name "*.m4v" -o -name "*.flv" -o -name "*.wmv" -o -name "*.avi" -o -name "*.mov" -o -name "*.webm" -o -name "*.ogv" -o -name "*.mkv" -o -name "*.mp4" \) -exec vbrand {} \;
+find . -type f -a \( -name "*.m4v" -o -name "*.flv" -o -name "*.wmv" -o -name "*.avi" -o -name "*.mov" -o -name "*.webm" -o -name "*.ogv" -o -name "*.mkv" -o -name "*.mp4" -o -name "*.mpg" -o -name "*.divx" \) -exec vbrand {} \;
+```
+
+Windows users can use:
+
+```powershell
+Get-ChildItem -Recurse -Include *.m4v,*.flv,*.wmv,*.avi,*.mov,*.webm,*.ogv,*.mkv,*.mp4,*.mpg,*.divx | % { vbrand $_.FullName }
 ```
 
 ## Removing Branding
 
 `vbrand rm video.mp4` will remove the brand. If you'd like to change your brand, you should first remove the old brand from everything that was branded, then recompile with your new brand, and finally rebrand all of your previously branded files.
 
-Note that while adding a brand is absurdly quick (~3ms for a 62GiB file), removing is not (~300ms on the same 62GiB file)
+Note that while adding a brand is absurdly quick (~3ms for a 62GiB file), removing is not (~300ms on the same 62GiB file). Also note that to remove brands for a lot of files, you can use the same methods in the [Batch Usage section](#batch-usage), but replace `vbrand` with `vbrand rm`
 
 ## Testing
 
