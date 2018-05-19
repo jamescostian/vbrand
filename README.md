@@ -70,7 +70,7 @@ Note that while adding a brand is absurdly quick (~3ms for a 62GiB file), removi
 
 ## Testing
 
-They're all written up in [tests/run](tests/run), and they all work on a [1.4GB video file](http://jell.yfish.us/) to ensure that `vbrand` is performant (although it is also tested for correctness).
+The tests are all written up in [tests/run](tests/run), and they all work on a [1.4GB video file](http://jell.yfish.us/) to ensure that `vbrand` is performant (although it is also tested for correctness).
 
 Note that the tests are written in bash - there are no automated tests for Windows at this time.
 

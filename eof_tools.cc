@@ -8,7 +8,7 @@ bool file_ends_in(string filename, string ending) {
   assert(file.is_open());
   // Read the end of the file to a buffer and then close the file
   int size = file.tellg();
-  file.seekg(size - ending.length(), ios_base::beg)
+  file.seekg(size - ending.length(), ios_base::beg);
   stringstream end;
   end << file.rdbuf();
   return end.str() == ending;

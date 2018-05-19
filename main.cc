@@ -7,7 +7,7 @@ bool XOR(bool p, bool q) {
 }
 
 int main(int argc, char **argv) {
-  if (argc == 1 || XOR(strcmp(argv[1], "rm"), argc == 2) || argc > 3) {
+  if (argc == 1 || XOR(strcmp(argv[1], "rm") != 0, argc == 2) || argc > 3) {
     cerr << "USAGE:" << endl;
     cerr << endl;
     cerr << "  vbrand path/to/file" << endl;
