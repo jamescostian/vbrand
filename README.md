@@ -20,9 +20,9 @@ An *efficient* solution would have to seek to the end of the file and apply the 
 
 ### Prerequisites
 
-Linux or macOS: git, cmake, make, g++
+Linux or macOS: git, cmake, make, and g++
 
-Windows: git, cmake, VS for C++ desktop development
+Windows: git, cmake, and either VS for C++ desktop development or just get the [build tools](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017)
 
 ### Downloading and CMaking
 
@@ -41,6 +41,8 @@ Linux and macOS users should use `make` while Windows users should use `msbuild.
 You'll end up with an executable called `vbrand` (or `Debug/vbrand.exe` on Windows) - you can move it into your `$PATH` if you want to access it more easily.
 
 ### Troubleshooting VS Builds
+
+If you can't run MSBuild at all, you should look into adding your MSBuild executable to your path - see [this](https://social.msdn.microsoft.com/Forums/en-US/26d0266c-e642-4c1d-a42c-ba8a69c40667/vsbuildtoolsexe-missing-in-visual-studio-build-tools-2017) or [this](https://stackoverflow.com/a/12608705) for tips.
 
 If you get an error about not having the right MSBuild version (e.g. it wanted me to have v141 but I had v140), then explicitly pass your MSBuild version to cmake like this: `cmake -T v140 -Dbrand:STRING="your brand here" .` which may require you to delete some CMake cache files
 
